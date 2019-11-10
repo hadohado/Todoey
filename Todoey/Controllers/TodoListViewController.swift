@@ -50,14 +50,21 @@ class TodoListViewController: SwipeTableViewController {
     func updateNavBar(withHexCode colourHexCode: String){
         
         guard let navBar = navigationController?.navigationBar else {fatalError("Navigation controller does not exist.")}
- 
-        guard let navBarColour = UIColor(named: colourHexCode) else { fatalError()}
+        
+        // guard let navBarColour = UIColor(named: colourHexCode) else { fatalError()}
+        let navBarColour = UIColor.green
         
         navBar.barTintColor = navBarColour
         
         navBar.tintColor = UIColor.green
+
         
-        navBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor : (Any).self]
+        //-----------------------------------------
+        // this cause crash !!! I remove it
+        //2019-11-10 01:26:52.883010-0800 Todoey[3642:645603] -[__SwiftValue set]: unrecognized selector sent to instance 0x280ebe9a0
+        //2019-11-10 01:26:52.886333-0800 Todoey[3642:645603] *** Terminating app due to uncaught exception 'NSInvalidArgumentException', reason: '-[__SwiftValue set]: unrecognized selector sent to instance 0x280ebe9a0'
+        //---------------------------------------
+        // navBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor : (Any).self]    // <- this cause CRASH (can not add items to category)
         
         searchBar.barTintColor = navBarColour
   
