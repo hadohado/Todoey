@@ -8,7 +8,7 @@
 
 import UIKit
 import RealmSwift
-import ChameleonFramework
+// import ChameleonFramework
 
 class TodoListViewController: SwipeTableViewController {
     
@@ -50,16 +50,27 @@ class TodoListViewController: SwipeTableViewController {
     func updateNavBar(withHexCode colourHexCode: String){
         
         guard let navBar = navigationController?.navigationBar else {fatalError("Navigation controller does not exist.")}
-        
-        guard let navBarColour = UIColor(hexString: colourHexCode) else { fatalError()}
+ 
+        guard let navBarColour = UIColor(named: colourHexCode) else { fatalError()}
         
         navBar.barTintColor = navBarColour
         
-        navBar.tintColor = ContrastColorOf(navBarColour, returnFlat: true)
+        navBar.tintColor = UIColor.green
         
-        navBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor : ContrastColorOf(navBarColour, returnFlat: true)]
+        navBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor : (Any).self]
         
         searchBar.barTintColor = navBarColour
+  
+        
+//        guard let navBarColour = UIColor(hexString: colourHexCode) else { fatalError()}
+//
+//        navBar.barTintColor = navBarColour
+//
+//        navBar.tintColor = ContrastColorOf(navBarColour, returnFlat: true)
+//
+//        navBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor : ContrastColorOf(navBarColour, returnFlat: true)]
+//
+//        searchBar.barTintColor = navBarColour
         
     }
     
@@ -79,10 +90,10 @@ class TodoListViewController: SwipeTableViewController {
             
             cell.textLabel?.text = item.title
             
-            if let colour = UIColor(hexString: selectedCategory!.colour)?.darken(byPercentage: CGFloat(indexPath.row) / CGFloat(todoItems!.count)) {
-                cell.backgroundColor = colour
-                cell.textLabel?.textColor = ContrastColorOf(colour, returnFlat: true)
-            }
+//            if let colour = UIColor(hexString: selectedCategory!.colour)?.darken(byPercentage: CGFloat(indexPath.row) / CGFloat(todoItems!.count)) {
+//                cell.backgroundColor = colour
+//                cell.textLabel?.textColor = ContrastColorOf(colour, returnFlat: true)
+//            }
             
             //            print("version 1: \(CGFloat(indexPath.row / todoItems!.count))")
             //

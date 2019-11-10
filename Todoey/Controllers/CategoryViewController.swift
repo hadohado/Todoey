@@ -8,7 +8,7 @@
 
 import UIKit
 import RealmSwift
-import ChameleonFramework
+// import ChameleonFramework
 
 class CategoryViewController: SwipeTableViewController {
     
@@ -41,11 +41,16 @@ class CategoryViewController: SwipeTableViewController {
         if let category = categories?[indexPath.row] {
             
             cell.textLabel?.text = category.name
-            
-            guard let categoryColour = UIColor(hexString: category.colour) else {fatalError()}
-            
+ 
+            let categoryColour = UIColor.yellow
             cell.backgroundColor = categoryColour
-            cell.textLabel?.textColor = ContrastColorOf(categoryColour, returnFlat: true)
+            cell.textLabel?.textColor = UIColor.blue
+            
+            
+//            guard let categoryColour = UIColor(hexString: category.colour) else {fatalError()}
+//
+//            cell.backgroundColor = categoryColour
+//            cell.textLabel?.textColor = ContrastColorOf(categoryColour, returnFlat: true)
             
         }
         
@@ -121,7 +126,8 @@ class CategoryViewController: SwipeTableViewController {
             
             let newCategory = Category()
             newCategory.name = textField.text!
-            newCategory.colour = UIColor.randomFlat.hexValue()
+            // newCategory.colour = "magenta"
+            // newCategory.colour = UIColor.random.hexValue()
             
             self.save(category: newCategory)
             
